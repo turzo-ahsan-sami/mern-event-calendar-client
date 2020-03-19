@@ -17,7 +17,6 @@ export default class EventCalendar extends Component {
         this.state = {
             events: [],
             redirect: null,
-            connectionStatus: false,
             endpoint: 'http://127.0.0.1:6060'
         };
     }
@@ -27,7 +26,7 @@ export default class EventCalendar extends Component {
         const socket = io(endpoint);
         socket.on('events', data => {
             this.setState({ events: data });
-            console.log('events', this.state.events);
+            // console.log('events', this.state.events);
             // let api_uri = routeGenerator.getURI(`events`);
             // axios.get(api_uri)
             //     .then(response => {
@@ -42,8 +41,8 @@ export default class EventCalendar extends Component {
 
     handleDateClick = (dateClickInfo) => {
         this.setState({ redirect: null });
-        localStorage.setItem('eventDate', JSON.stringify(dateClickInfo.dateStr));
-        this.setState({ redirect: `/create/event` });
+        // localStorage.setItem('eventDate', JSON.stringify(dateClickInfo.dateStr));
+        this.setState({ redirect: `/create/event?date=${dateClickInfo.dateStr}`});
     }
 
     handleEventClick = (eventClickInfo) => {

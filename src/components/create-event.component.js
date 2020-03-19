@@ -26,10 +26,12 @@ export default class CreateEvent extends Component {
     }
 
     componentDidMount() {
-        let eventDate = '';
-        if (localStorage && localStorage.getItem('eventDate')) {
-            eventDate = JSON.parse(localStorage.getItem('eventDate'));
-        }
+        // var urlParams = new URLSearchParams(window.location.search);
+        // console.log(urlParams.get('date'));
+        let eventDate = new URLSearchParams(window.location.search).get('date');
+        // if (localStorage && localStorage.getItem('eventDate')) {
+        //     eventDate = JSON.parse(localStorage.getItem('eventDate'));
+        // }
         this.setState({ date: new Date(eventDate) });
         
         let api_uri = routeGenerator.getURI("users");
